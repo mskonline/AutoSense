@@ -1,7 +1,9 @@
-package org.autosense;
+package org.autosense.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import org.autosense.R;
 
 public class MainActivity extends Activity {
 
