@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/Start"
-        android:title="Start"/>
+        android:id="@+id/select_beacon"
+        android:title="Select Beacon"/>
 
     <item
-        android:id="@+id/Stop"
-        android:title="Stop"/>
-
+        android:id="@+id/about_autosense"
+        android:title="About AutoSense"/>
 </menu>

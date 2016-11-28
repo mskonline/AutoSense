@@ -53,7 +53,7 @@ public class MainTestActivity extends AppCompatActivity {
             Log.i("Feature","Supported");
 
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(getApplicationContext().BLUETOOTH_SERVICE);
-        beaconService = new BeaconService(bluetoothManager, this);
+        //beaconService = new BeaconService(bluetoothManager, this);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -84,7 +84,7 @@ public class MainTestActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.topmenu, menu);
+        inflater.inflate(R.menu.topmenu_test, menu);
         return true;
     }
 
