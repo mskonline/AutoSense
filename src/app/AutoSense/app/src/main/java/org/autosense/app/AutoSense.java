@@ -28,7 +28,6 @@ public class AutoSense extends Application {
 
     private boolean setupApp(){
         appConfig = AppConfig.getInstance();
-        appConfig.setOperatingMode(AppConfig.APP_MODE_MEASURE_BEACON_RSSI);
 
         return true;
     }
@@ -37,8 +36,6 @@ public class AutoSense extends Application {
     public void initializeBLEServices(BluetoothManager bluetoothManager){
         if(beaconService == null)
             beaconService = new BeaconService(bluetoothManager);
-
-        Log.i("Info", "BLE Services Initialized");
     }
 
     public AppConfig getAppConfig() {

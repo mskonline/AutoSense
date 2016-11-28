@@ -1,17 +1,13 @@
 package org.autosense.commons;
 
-import android.bluetooth.BluetoothDevice;
+import org.autosense.data.Beacon;
 
 public class AppConfig {
 
-    public static final byte APP_MODE_MEASURE_BEACON_RSSI = 0;
-    public static final byte APP_MODE_RECORD_RSSI = 1;
-    public static final byte APP_MODE_SENSE_BEACON = 2;
-
-    private byte operatingMode;
     private static AppConfig appConfig;
 
-    private BluetoothDevice device;
+    private String beaconName;
+    private Beacon beacon;
 
     protected void AppConfig(){}
 
@@ -22,19 +18,20 @@ public class AppConfig {
         return appConfig;
     }
 
-    public byte getOperatingMode() {
-        return operatingMode;
+
+    public String getBeaconName() {
+        return beaconName;
     }
 
-    public void setOperatingMode(byte operatingMode) {
-        this.operatingMode = operatingMode;
+    public void setBeaconName(String beaconName) {
+        this.beaconName = beaconName;
     }
 
-    public BluetoothDevice getDevice() {
-        return device;
+    public Beacon getBeacon() {
+        return beacon;
     }
 
-    public void setDevice(BluetoothDevice device) {
-        this.device = device;
+    public void setBeacon(Beacon beacon) {
+        this.beacon = beacon;
     }
 }

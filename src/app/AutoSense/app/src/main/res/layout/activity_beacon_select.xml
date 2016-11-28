@@ -11,37 +11,57 @@
     tools:context="org.autosense.activity.BeaconSelect">
 
     <RelativeLayout
+        android:id="@+id/buttonsPanel"
         android:layout_width="match_parent"
-        android:layout_height="50dip" android:layout_marginBottom="20px">
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp">
 
         <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5">
+            android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:text="Beacons Nearby"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:layout_weight="0.4">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Beacons nearby..."
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6" >
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:text="Refresh"
+                    android:id="@+id/button_refreshBeaconListing"
+                    android:inputType="textCapSentences"/>
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:text="Stop Scan"
+                    android:id="@+id/button_stopBeaconListing"
+                    android:inputType="textCapSentences"/>
+
+            </LinearLayout>
         </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5">
-
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="match_parent" android:text="Stop" android:id="@+id/button_stopBeaconListing"/>
-
-        </LinearLayout>
-
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/buttonsPanel">
 
         <ListView
             android:layout_width="match_parent"
@@ -50,5 +70,4 @@
             android:id="@+id/beacons_list" />
 
     </RelativeLayout>
-
 </RelativeLayout>

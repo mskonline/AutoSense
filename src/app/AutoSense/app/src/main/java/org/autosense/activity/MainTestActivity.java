@@ -74,7 +74,7 @@ public class MainTestActivity extends AppCompatActivity {
             case PERMISSION_REQUEST_COARSE_LOCATION: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d("permission", "coarse location permission granted");
-                    beaconService.startBeaconScan();
+                    //beaconService.startBeaconScan();
                 }
                 return;
             }
@@ -92,10 +92,10 @@ public class MainTestActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Start:
-                beaconService.startBeaconScan();
+                //beaconService.startBeaconScan();
                 return true;
             case R.id.Stop:
-                beaconService.stopBeaconScan();
+                //beaconService.stopBeaconScan();
                 beacons.clear();
                 beaconListAdaptor.notifyDataSetChanged();
                 return true;
@@ -129,7 +129,7 @@ public class MainTestActivity extends AppCompatActivity {
             row = inflater.inflate(R.layout.beaconitem, parent, false);
             TextView beaconAddr;
 
-            beaconAddr = (TextView) row.findViewById(R.id.beaconAddr);
+            beaconAddr = (TextView) row.findViewById(R.id.beaconName);
 
             try{
                 beaconAddr.setText(beacons.get(position));
