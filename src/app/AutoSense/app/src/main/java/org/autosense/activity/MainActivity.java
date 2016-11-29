@@ -12,18 +12,65 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.autosense.R;
 import org.autosense.app.AutoSense;
+import org.autosense.commons.AppConfig;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    //private ListView functions;
+    private AppConfig appconfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // create list
+        String[] options = new String[]{"Check RSSI","RSSI when in motion","Threshold Speed"};
+
+        // build adapter
+       ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options);
+
+        // Configure list view
+        ListView list=(ListView) findViewById(R.id.viewid);
+        list.setAdapter(adapter);
+        appconfig=((AutoSense)getApplication()).getAppConfig();
+        //callback
+        itemClickCallBack();
+
         this.checkBLEPermissions();
+    }
+
+    private void itemClickCallBack() {
+        ListView list = (ListView) findViewById(R.id.viewid);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int i, long l) {
+                //TextView textView=(TextView) viewClicked;
+
+                //if(i=0& )
+                //{
+                  //  Intent a= new Intent(viewClicked.getContext(),)
+               // }
+
+                // slect device before selecting function
+                if(appconfig.getBeaconName().equals("Beacon not set")) {
+
+                    Toast.makeText(viewClicked.getContext(), "Select any beacon first", Toast.LENGTH_SHORT).show();
+                }
+                }
+        });
+
+
     }
 
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
