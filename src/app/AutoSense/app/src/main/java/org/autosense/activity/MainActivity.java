@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 return true;
             case R.id.about_autosense:
-                i = new Intent(MainActivity.this, AboutAutoSense.class);
+                i = new Intent(MainActivity.this, MeasureThresholdSpeed.class);
                 startActivity(i);
                 return true;
             default:

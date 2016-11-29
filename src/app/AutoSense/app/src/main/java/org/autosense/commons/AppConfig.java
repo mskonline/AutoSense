@@ -6,7 +6,7 @@ public class AppConfig {
 
     private static AppConfig appConfig;
 
-    private String beaconName;
+    private String beaconName = "Beacon not set";
     private Beacon beacon;
 
     protected void AppConfig(){}

@@ -30,7 +30,7 @@ import java.util.List;
 public class BeaconSelect extends AppCompatActivity {
 
     private ListView beaconList;
-    private Button stopButton, refreshButton;
+    private Button actionButton, refreshButton;
 
     private List<String> beaconNameList;
     private List<Beacon> beaconObjList;
@@ -41,13 +41,15 @@ public class BeaconSelect extends AppCompatActivity {
     private AppConfig appConfig;
     private leDeviceCallback leDeviceCallback;
 
+    public boolean isScanning = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beacon_select);
 
         beaconList = (ListView) findViewById(R.id.beacons_list);
-        stopButton = (Button) findViewById(R.id.button_stopBeaconListing);
+        actionButton = (Button) findViewById(R.id.button_stopBeaconListing);
         refreshButton = (Button) findViewById(R.id.button_refreshBeaconListing);
 
         beaconNameList = new ArrayList<String>();
@@ -62,10 +64,18 @@ public class BeaconSelect extends AppCompatActivity {
         leDeviceCallback = new leDeviceCallback();
         beaconService.startBeaconScan(leDeviceCallback);
 
-        stopButton.setOnClickListener(new Button.OnClickListener(){
+        actionButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v){
-                beaconService.stopBeaconScan(leDeviceCallback);
+                if(isScanning){
+                    beaconService.stopBeaconScan(leDeviceCallback);
+                    actionButton.setText("Rescan");
+                    isScanning = false;
+                } else {
+                    beaconService.startBeaconScan(leDeviceCallback);
+                    actionButton.setText("Stop Scan");
+                    isScanning = true;
+                }
             }
         });
 
@@ -98,11 +108,22 @@ public class BeaconSelect extends AppCompatActivity {
     }
 
     private void updateBeaconList(String deviceName, Beacon beacon){
-        if(!beaconNameList.contains(deviceName)) {
+        int i = beaconNameList.indexOf(deviceName);
+        boolean refresh = false;
+
+        if(i == -1) {
             beaconNameList.add(deviceName);
             beaconObjList.add(beacon);
-            beaconListAdaptor.notifyDataSetChanged();
+            refresh = true;
+        } else {
+            if(beaconObjList.get(i).getRssi() != beacon.getRssi()){
+                beaconObjList.get(i).setRssi(beacon.getRssi());
+                refresh = true;
+            }
         }
+
+        if(refresh)
+            beaconListAdaptor.notifyDataSetChanged();
     }
 
     class leDeviceCallback extends ScanCallback {
@@ -129,7 +150,7 @@ public class BeaconSelect extends AppCompatActivity {
             try{
                 data = new String(result.getScanRecord().getServiceData(uuids.get(0)), UTF8_CHARSET);
             } catch (Exception e){
-                data = "";
+                data = "URL not available";
             }
 
             beacon.setData(data);

@@ -23,15 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainTestActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
         <activity android:name=".activity.BeaconSelect" />
-        <activity android:name=".activity.AboutAutoSense"></activity>
+        <activity android:name=".activity.AboutAutoSense" />
+        <activity android:name=".activity.MeasureThresholdSpeed"></activity>
     </application>
 
 </manifest>
