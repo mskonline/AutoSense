@@ -57,16 +57,27 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View viewClicked, int i, long l) {
                 //TextView textView=(TextView) viewClicked;
 
-                //if(i=0& )
-                //{
-                  //  Intent a= new Intent(viewClicked.getContext(),)
-               // }
+
 
                 // slect device before selecting function
                 if(appconfig.getBeaconName().equals("Beacon not set")) {
 
                     Toast.makeText(viewClicked.getContext(), "Select any beacon first", Toast.LENGTH_SHORT).show();
                 }
+
+                else if(i==0 )
+                {
+                    Intent a= new Intent(viewClicked.getContext(),Option1.class);
+                    startActivity(a);
+                }
+
+                else if(i==1)
+                {
+                    Intent b= new Intent(viewClicked.getContext(),Scenario_homepage.class);
+                    startActivity(b);
+                }
+
+
                 }
         });
 

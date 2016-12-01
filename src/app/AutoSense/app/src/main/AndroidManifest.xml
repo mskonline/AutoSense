@@ -28,6 +28,7 @@
         <activity android:name=".activity.MeasureThresholdSpeed" />
         <activity android:name=".activity.ThresholdSpeedCapture" />
         <activity android:name=".activity.Option1" />
+        <activity android:name=".activity.Scenario_homepage"></activity>
         <activity android:name=".activity.BeaconReadingsGraph"></activity>
     </application>
 

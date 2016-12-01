@@ -1,27 +1,26 @@
 package org.autosense.data;
 
+import com.github.mikephil.charting.data.Entry;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 
-public class BeaconScanData {
+public class BeaconScanData implements Serializable {
 
-    private Map<Long, Integer> data;
+    List<Entry> entries = new ArrayList<Entry>();
 
-    public BeaconScanData(){
-        data = new LinkedHashMap<Long, Integer>();
+   public void setEntry(int i, int rssi)
+   {
+       entries.add(new Entry(i+1,rssi));
+   }
+
+    public List<Entry> getData()
+    {
+        return entries;
     }
 
-    public void addDataPoint(Long time, int rssi){
-        data.put(time, rssi);
-    }
-
-    public void addDataPoint(int rssi){
-        Long cTime = System.currentTimeMillis();
-        data.put(cTime, rssi);
-    }
-
-    public Map<Long, Integer> getData(){
-        return data;
-    }
 }
