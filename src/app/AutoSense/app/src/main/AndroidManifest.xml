@@ -25,9 +25,10 @@
         </activity>
         <activity android:name=".activity.BeaconSelect" />
         <activity android:name=".activity.AboutAutoSense" />
-        <activity android:name=".activity.MeasureThresholdSpeed"></activity>
-        <activity android:name=".activity.ThresholdSpeedCapture"></activity>
-        <activity android:name=".activity.Option1"></activity>
+        <activity android:name=".activity.MeasureThresholdSpeed" />
+        <activity android:name=".activity.ThresholdSpeedCapture" />
+        <activity android:name=".activity.Option1" />
+        <activity android:name=".activity.BeaconReadingsGraph"></activity>
     </application>
 
 </manifest>
