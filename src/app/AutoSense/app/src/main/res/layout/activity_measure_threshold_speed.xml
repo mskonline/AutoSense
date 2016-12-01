@@ -25,18 +25,42 @@
         android:layout_height="wrap_content"
         android:id="@+id/op3BeaconName"
         android:text="B0:B0:B0:B0:B0:B0"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginEnd="14dp" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="52dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Beacon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignBottom="@+id/op3BeaconName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
         android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_toStartOf="@+id/op3BeaconName"
-        android:layout_marginEnd="11dp" />
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:text="Enter your speed"
+        android:gravity="center"
+        android:ems="10"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/op3SpeedEditText" />
+
+    <Button
+        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="39dp"
+        android:id="@+id/op3startbtn"
+        android:layout_below="@+id/op3SpeedEditText"
+        android:layout_centerHorizontal="true"
+        android:inputType="textCapSentences"/>
 </RelativeLayout>

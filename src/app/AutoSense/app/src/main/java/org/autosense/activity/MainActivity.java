@@ -89,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeBLEService(){
         Log.i("Info","initializeBLEService()");
-        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(getApplicationContext().BLUETOOTH_SERVICE);
-        ((AutoSense) getApplication()).initializeBLEServices(bluetoothManager);
+        ((AutoSense) getApplication()).initializeBLEServices();
     }
 
     @Override
