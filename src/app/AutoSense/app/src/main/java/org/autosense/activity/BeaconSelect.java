@@ -96,6 +96,9 @@ public class BeaconSelect extends AppCompatActivity {
 
                 appConfig.setBeaconName(beaconName);
                 appConfig.setBeacon(beacon);
+                appConfig.setBeaconURL(beacon.getData());
+
+                beaconService.stopBeaconScan(leDeviceCallback);
 
                 Toast.makeText(getApplicationContext(), "Beacon - " + beaconName + " selected", Toast.LENGTH_SHORT).show();
 
@@ -180,7 +183,7 @@ public class BeaconSelect extends AppCompatActivity {
 
             LayoutInflater inflater = getLayoutInflater();
             View row;
-            row = inflater.inflate(R.layout.beaconitem, parent, false);
+            row = inflater.inflate(R.layout.list_item_beacon, parent, false);
             TextView beaconName, beaconStrength, beaconUrl;
 
             beaconName = (TextView) row.findViewById(R.id.beaconName);

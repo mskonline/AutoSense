@@ -1,8 +1,11 @@
 package org.autosense.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -18,14 +21,15 @@ import org.autosense.R;
 import org.autosense.app.AutoSense;
 import org.autosense.commons.AppConfig;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class BeaconReadingsGraph extends AppCompatActivity {
 
     private AppConfig appConfig;
-    private TextView beaconName, beaconReadings, scenarioText;
+    private TextView beaconName,
+                     beaconReadings,
+                     scenarioText,
+                     beaconURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,23 @@ public class BeaconReadingsGraph extends AppCompatActivity {
         beaconName = (TextView) findViewById(R.id.graph_beaconname);
         beaconReadings = (TextView) findViewById(R.id.graph_beaconreadings);
         scenarioText = (TextView) findViewById(R.id.scenarioText);
+        beaconURL = (TextView) findViewById(R.id.graph_beaconURL);
+        Button backBtn = (Button) findViewById(R.id.graph_backBtn);
+
+        backBtn.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+            }
+        });
+
+        appConfig = ((AutoSense) getApplication()).getAppConfig();
+
+        Bundle extras = getIntent().getExtras();
+        scenarioText.setText("Scenario : " + extras.getString("scenario"));
+        beaconReadings.setText("Readings : " + extras.getString("numReadings"));
+        beaconName.setText("Beacon : " + appConfig.getBeaconName());
+        beaconURL.setText("URL : " + appConfig.getBeaconURL());
 
         chart.setTouchEnabled(true);
         chart.setDragEnabled(true);
@@ -47,12 +68,7 @@ public class BeaconReadingsGraph extends AppCompatActivity {
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        List<Entry> entries = new ArrayList<Entry>();
-
-        Random rand = new Random();
-        for(int i = 0; i < 20; ++i){
-            entries.add(new Entry(i, -(rand.nextInt(100))));
-        }
+        List<Entry> entries = appConfig.getData();
 
         LineDataSet dataSet = new LineDataSet(entries, "RSSI");
         dataSet.setColor(Color.RED);
@@ -68,12 +84,6 @@ public class BeaconReadingsGraph extends AppCompatActivity {
         chart.setData(lineData);
 
         chart.invalidate();
-
-        appConfig = ((AutoSense) getApplication()).getAppConfig();
-
-        beaconName.setText("Beacon : " + appConfig.getBeaconName());
-        beaconReadings.setText("Readings : " + "20");
-        scenarioText.setText("Scenario : Walking down the Stairs");
     }
 
     class MyFillFormatter implements IFillFormatter {

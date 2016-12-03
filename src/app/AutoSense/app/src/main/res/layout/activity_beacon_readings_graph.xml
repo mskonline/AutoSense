@@ -14,28 +14,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="75dp"
+            android:id="@+id/graph_beacon_info">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="25dp"
                 android:text="Beacon : B0:45:AB:34:22:CB"
                 android:id="@+id/graph_beaconname"/>
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/graph_beaconname"
+                android:text="URL : "
+                android:id="@+id/graph_beaconURL"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_below="@id/graph_beaconURL"
                 android:gravity="right"
                 android:text="Readings : 10"
                 android:id="@+id/graph_beaconreadings"/>
-        </LinearLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="30dp">
+            android:layout_below="@id/graph_beacon_info"
+            android:layout_marginTop="10dp">
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/chart"
@@ -56,12 +66,13 @@
             <Button
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="30dp"
-                android:text="Refresh"
+                android:layout_marginTop="20dp"
+                android:text="Back"
                 android:gravity="center"
                 android:layout_below="@+id/scenarioText"
                 android:layout_centerHorizontal="true"
-                android:inputType="textCapSentences"/>
+                android:inputType="textCapSentences"
+                android:id="@+id/graph_backBtn" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

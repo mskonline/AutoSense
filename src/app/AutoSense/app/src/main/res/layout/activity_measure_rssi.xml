@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="org.autosense.activity.Option1">
+    tools:context="org.autosense.activity.MeasureRSSI">
 
 
 
@@ -16,7 +16,7 @@
         android:text="Measure the RSSI Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/op2_readings"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:id="@+id/Option1text"

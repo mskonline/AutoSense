@@ -1,7 +1,6 @@
 package org.autosense.activity;
 
 import android.Manifest;
-import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -16,17 +15,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.autosense.R;
 import org.autosense.app.AutoSense;
 import org.autosense.commons.AppConfig;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-    //private ListView functions;
     private AppConfig appconfig;
 
     @Override
@@ -34,20 +29,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // create list
-        String[] options = new String[]{"Check RSSI","RSSI when in motion","Threshold Speed"};
+        // Options
+        String[] options = new String[]{
+                "Measure RSSI",
+                "Measure RSSI when in motion",
+                "Measure threshold speed"
+        };
 
         // build adapter
-       ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
 
         // Configure list view
         ListView list=(ListView) findViewById(R.id.viewid);
         list.setAdapter(adapter);
         appconfig=((AutoSense)getApplication()).getAppConfig();
-        //callback
+
+        // Callback
         itemClickCallBack();
 
-        this.checkBLEPermissions();
+        // Check Bluetooth Permissions
+        checkBLEPermissions();
     }
 
     private void itemClickCallBack() {
@@ -55,33 +56,21 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int i, long l) {
-                //TextView textView=(TextView) viewClicked;
-
-
-
-                // slect device before selecting function
-                if(appconfig.getBeaconName().equals("Beacon not set")) {
-
-                    Toast.makeText(viewClicked.getContext(), "Select any beacon first", Toast.LENGTH_SHORT).show();
+                Intent intent;
+                if(!appconfig.isBeaconSet()) {
+                    Toast.makeText(viewClicked.getContext(), "Select a Beacon", Toast.LENGTH_SHORT).show();
+                } else if(i == 0) {
+                    intent = new Intent(viewClicked.getContext(), MeasureRSSI.class);
+                    startActivity(intent);
+                } else if(i == 1) {
+                    intent = new Intent(viewClicked.getContext(), MeasureInMotion.class);
+                    startActivity(intent);
+                } else if(i == 2){
+                    intent = new Intent(viewClicked.getContext(), MeasureThresholdSpeed.class);
+                    startActivity(intent);
                 }
-
-                else if(i==0 )
-                {
-                    Intent a= new Intent(viewClicked.getContext(),Option1.class);
-                    startActivity(a);
-                }
-
-                else if(i==1)
-                {
-                    Intent b= new Intent(viewClicked.getContext(),Scenario_homepage.class);
-                    startActivity(b);
-                }
-
-
-                }
+            }
         });
-
-
     }
 
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
@@ -118,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.topmenu, menu);
+        inflater.inflate(R.menu.top_menu, menu);
         return true;
     }
 
@@ -132,11 +121,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 return true;
             case R.id.about_autosense:
-                i = new Intent(MainActivity.this, MeasureThresholdSpeed.class);
+                i = new Intent(MainActivity.this, AboutAutoSense.class);
                 startActivity(i);
                 return true;
             default:
                 return false;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 }

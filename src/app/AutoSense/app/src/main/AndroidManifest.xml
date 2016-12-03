@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.autosense">
-
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -27,9 +26,8 @@
         <activity android:name=".activity.AboutAutoSense" />
         <activity android:name=".activity.MeasureThresholdSpeed" />
         <activity android:name=".activity.ThresholdSpeedCapture" />
-        <activity android:name=".activity.Option1" />
-        <activity android:name=".activity.Scenario_homepage"></activity>
+        <activity android:name=".activity.MeasureRSSI" />
+        <activity android:name=".activity.MeasureInMotion"></activity>
         <activity android:name=".activity.BeaconReadingsGraph"></activity>
     </application>
-
 </manifest>

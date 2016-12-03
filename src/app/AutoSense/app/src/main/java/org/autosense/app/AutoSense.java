@@ -38,7 +38,8 @@ public class AutoSense extends Application {
 
 
     public void initializeBLEServices(){
-        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(getApplicationContext().BLUETOOTH_SERVICE);
+        BluetoothManager bluetoothManager =
+                (BluetoothManager) getSystemService(getApplicationContext().BLUETOOTH_SERVICE);
 
         if(beaconService == null)
             beaconService = new BeaconService(bluetoothManager);
