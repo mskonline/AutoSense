@@ -20,10 +20,10 @@ import android.widget.Toast;
 import org.autosense.R;
 import org.autosense.app.AutoSense;
 import org.autosense.commons.AppConfig;
+import org.autosense.commons.Utils;
 import org.autosense.services.BeaconService;
 import org.autosense.data.Beacon;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -131,7 +131,7 @@ public class BeaconSelect extends AppCompatActivity {
 
     class leDeviceCallback extends ScanCallback {
 
-        private final Charset UTF8_CHARSET = Charset.forName("UTF-8");
+        List<ParcelUuid> uuids;
 
         @Override
         public void onScanResult(int callbackType, ScanResult result){
@@ -147,11 +147,11 @@ public class BeaconSelect extends AppCompatActivity {
             beacon.setDevice(result.getDevice());
             beacon.setRssi(result.getRssi());
 
-            List<ParcelUuid> uuids = result.getScanRecord().getServiceUuids();
+            uuids = result.getScanRecord().getServiceUuids();
             String data;
 
             try{
-                data = new String(result.getScanRecord().getServiceData(uuids.get(0)), UTF8_CHARSET);
+                data = Utils.decode(result.getScanRecord().getServiceData(uuids.get(0)));
             } catch (Exception e){
                 data = "URL not available";
             }

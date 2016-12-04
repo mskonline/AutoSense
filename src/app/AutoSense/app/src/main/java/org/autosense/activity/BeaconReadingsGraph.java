@@ -1,6 +1,5 @@
 package org.autosense.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,7 +52,7 @@ public class BeaconReadingsGraph extends AppCompatActivity {
         appConfig = ((AutoSense) getApplication()).getAppConfig();
 
         Bundle extras = getIntent().getExtras();
-        scenarioText.setText("Scenario : " + extras.getString("scenario"));
+        scenarioText.setText(extras.getString("scenario"));
         beaconReadings.setText("Readings : " + extras.getString("numReadings"));
         beaconName.setText("Beacon : " + appConfig.getBeaconName());
         beaconURL.setText("URL : " + appConfig.getBeaconURL());

@@ -14,8 +14,10 @@
         android:text="Beacon/Device is in motion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="25dp"
         android:id="@+id/bmotion"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 

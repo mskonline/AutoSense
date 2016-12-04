@@ -32,7 +32,7 @@ public class AppConfig {
     }
 
     public void setEntry(int i, int rssi) {
-        entries.add(new Entry(i + 1, rssi));
+        entries.add(new Entry(i, rssi));
     }
 
     public List<Entry> getData() {
