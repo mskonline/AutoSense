@@ -10,4 +10,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.autosense.activity.AboutAutoSense">
 
+    <TextView
+        android:text="AutoSense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView3"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:id="@+id/textView4"
+        android:text="@string/app_desc"
+        android:textAlignment="viewStart" />
+
+    <TextView
+        android:text="Developers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/textView5"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="@string/app_devs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView6" />
+
+    <TextView
+        android:text="CS 6349, Fall 2016, UTA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/textView7" />
 </RelativeLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AutoSense</string>
+    <string name="app_desc">An Android app to benchmark Bluetooth Low Energy Beacons</string>
+    <string name="app_devs">Sai Kumar Annupureddy\nSai Kumar Manakan\nShashank Sagaram</string>
 </resources>
