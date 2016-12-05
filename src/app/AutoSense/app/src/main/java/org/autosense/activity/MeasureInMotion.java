@@ -81,6 +81,7 @@ public class MeasureInMotion extends AppCompatActivity
                     startButton.setEnabled(false);
                     stopButton.setEnabled(true);
                     resetButton.setEnabled(true);
+                    graphButton.setEnabled(false);
                 } else {
                     showMessage("Please enter scenario");
                 }
@@ -98,6 +99,7 @@ public class MeasureInMotion extends AppCompatActivity
                 startButton.setEnabled(true);
                 stopButton.setEnabled(false);
                 resetButton.setEnabled(true);
+                graphButton.setEnabled(true);
             }
         });
 
@@ -112,6 +114,7 @@ public class MeasureInMotion extends AppCompatActivity
                 startButton.setEnabled(true);
                 stopButton.setEnabled(false);
                 resetButton.setEnabled(false);
+                graphButton.setEnabled(false);
             }
         });
 
@@ -129,8 +132,6 @@ public class MeasureInMotion extends AppCompatActivity
                     i.putExtra("scenario", scenario.getText().toString());
                     i.putExtra("numReadings", "" + numReadings);
 
-                    calculateStopTime();
-
                     i.putExtra("stopTime", stopTime);
                     startActivity(i);
                 } else {
@@ -138,6 +139,8 @@ public class MeasureInMotion extends AppCompatActivity
                 }
             }
         });
+
+        graphButton.setEnabled(false);
     }
 
     private void calculateStopTime(){
