@@ -36,7 +36,7 @@ public class MeasureThresholdSpeed extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent i = new Intent(MeasureThresholdSpeed.this, ThresholdSpeedCapture.class);
-                i.putExtra("cSpeed", speed.getText());
+                i.putExtra("cSpeed", speed.getText().toString());
                 startActivity(i);
             }
         });

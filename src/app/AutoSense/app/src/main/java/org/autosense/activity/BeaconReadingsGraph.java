@@ -57,12 +57,16 @@ public class BeaconReadingsGraph extends AppCompatActivity {
         beaconName.setText("Beacon : " + appConfig.getBeaconName());
         beaconURL.setText("URL : " + appConfig.getBeaconURL());
 
+        float stopTime = extras.getFloat("stopTime");
+
         chart.setTouchEnabled(true);
         chart.setDragEnabled(true);
         chart.setScaleEnabled(true);
         chart.setPinchZoom(true);
         chart.getDescription().setEnabled(false);
         chart.setDrawGridBackground(false);
+        chart.getXAxis().setAxisMinimum(0.0f);
+        chart.getXAxis().setAxisMaximum(stopTime);
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);

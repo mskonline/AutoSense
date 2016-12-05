@@ -11,31 +11,46 @@
     tools:context="org.autosense.activity.ThresholdSpeedCapture">
 
     <TextView
-        android:text="TextView"
+        android:text="Beacon Name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/op3_2_beaconName" />
 
     <TextView
-        android:text="TextView"
+        android:text="URL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/op3_2_beaconName"
+        android:id="@+id/op3_2_beaconURL" />
+
+
+    <TextView
+        android:text="Status"
+        android:textStyle="bold"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/op3_2_beaconURL"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="34dp"
         android:layout_marginTop="40dp"
-        android:id="@+id/op3_2_" />
+        android:id="@+id/op3_2_statusText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/op3_2_statusText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/op3_2_speedReadings" />
 
     <Button
-        android:text="Refresh"
+        android:text="Stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/op3_2_"
+        android:layout_below="@+id/op3_2_speedReadings"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
-        android:id="@+id/op3_2_speedReadings"
+        android:id="@+id/op3_2_stopBtn"
         android:inputType="textCapSentences"/>
 </RelativeLayout>

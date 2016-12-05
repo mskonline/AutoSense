@@ -31,7 +31,7 @@ public class AppConfig {
         entries.clear();
     }
 
-    public void setEntry(int i, int rssi) {
+    public void setEntry(float i, int rssi) {
         entries.add(new Entry(i, rssi));
     }
 

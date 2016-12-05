@@ -31,6 +31,9 @@ public class MeasureInMotion extends AppCompatActivity
     private leDeviceCallback ledeviceCallBack;
     private InputMethodManager imm;
 
+    private long startTime;
+    private float stopTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -69,14 +72,17 @@ public class MeasureInMotion extends AppCompatActivity
                 graphButton.requestFocus();
 
                 if(!scenario.getText().toString().equalsIgnoreCase("")){
+                    /* All set. Let's start the experiment */
+                    startTime = System.currentTimeMillis();
+
                     beaconService.startBeaconScan(ledeviceCallBack);
-                    Toast.makeText(getApplicationContext(), "Scanning started", Toast.LENGTH_SHORT).show();
+                    showMessage("Scanning started");
 
                     startButton.setEnabled(false);
                     stopButton.setEnabled(true);
                     resetButton.setEnabled(true);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Please enter scenario", Toast.LENGTH_SHORT).show();
+                    showMessage("Please enter scenario");
                 }
             }
         });
@@ -85,7 +91,9 @@ public class MeasureInMotion extends AppCompatActivity
         {
             public void onClick(View v) {
                 beaconService.stopBeaconScan(ledeviceCallBack);
-                Toast.makeText(getApplicationContext(), "Scanning stopped", Toast.LENGTH_SHORT).show();
+                showMessage("Scanning stopped");
+
+                calculateStopTime();
 
                 startButton.setEnabled(true);
                 stopButton.setEnabled(false);
@@ -98,11 +106,8 @@ public class MeasureInMotion extends AppCompatActivity
             public void onClick(View v) {
                 beaconService.stopBeaconScan(ledeviceCallBack);
 
-                appConfig.clearBeaconData();
-                numReadings = 0;
-                readingTView.setText("0");
-
-                Toast.makeText(getApplicationContext(), "Reset done", Toast.LENGTH_SHORT).show();
+                resetMetrics();
+                showMessage("Reset done");
 
                 startButton.setEnabled(true);
                 stopButton.setEnabled(false);
@@ -123,12 +128,31 @@ public class MeasureInMotion extends AppCompatActivity
                     Intent i= new Intent(MeasureInMotion.this, BeaconReadingsGraph.class);
                     i.putExtra("scenario", scenario.getText().toString());
                     i.putExtra("numReadings", "" + numReadings);
+
+                    calculateStopTime();
+
+                    i.putExtra("stopTime", stopTime);
                     startActivity(i);
                 } else {
-                    Toast.makeText(getApplicationContext(), "No data available", Toast.LENGTH_SHORT).show();
+                    showMessage("No data available");
                 }
             }
         });
+    }
+
+    private void calculateStopTime(){
+        stopTime = (System.currentTimeMillis() - startTime) / 1000f;
+    }
+
+    private void resetMetrics(){
+        appConfig.clearBeaconData();
+        numReadings = 0;
+        startTime = 0;
+        readingTView.setText("0");
+    }
+
+    private void showMessage(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -139,6 +163,9 @@ public class MeasureInMotion extends AppCompatActivity
     }
 
     class leDeviceCallback extends ScanCallback {
+
+        float currentTimeInSecs;
+
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
             String deviceName = result.getDevice().getName();
@@ -148,7 +175,11 @@ public class MeasureInMotion extends AppCompatActivity
             }
 
             if (appConfig.getBeaconName().equals(deviceName)) {
-                appConfig.setEntry(++numReadings, result.getRssi());
+
+                currentTimeInSecs = (System.currentTimeMillis() - startTime) / 1000f;
+                ++numReadings;
+
+                appConfig.setEntry(currentTimeInSecs, result.getRssi());
                 readingTView.setText("" + numReadings);
             }
         }

@@ -16,25 +16,25 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:id="@+id/graph_beacon_info">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="20dp"
                 android:text="Beacon : B0:45:AB:34:22:CB"
                 android:id="@+id/graph_beaconname"/>
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="20dp"
                 android:layout_below="@id/graph_beaconname"
                 android:text="URL : "
                 android:id="@+id/graph_beaconURL"
                 />
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="20dp"
                 android:layout_below="@id/graph_beaconURL"
                 android:gravity="right"
                 android:text="Readings : 10"
@@ -47,32 +47,45 @@
             android:layout_below="@id/graph_beacon_info"
             android:layout_marginTop="10dp">
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/chart"
-                android:layout_marginRight="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@+id/chart"
                 android:text="Scenario : Walking down the Stairs"
                 android:textAlignment="center"
                 android:textSize="14dp"
+                android:textStyle="bold"
                 android:id="@+id/scenarioText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/chart"
+                android:text="Time (secs)"
+                android:textAlignment="center"
+                android:textSize="14dp"
+                android:id="@+id/xAxisLabel"/>
 
             <Button
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Back"
                 android:gravity="center"
-                android:layout_below="@+id/scenarioText"
+                android:layout_below="@+id/xAxisLabel"
                 android:layout_centerHorizontal="true"
                 android:inputType="textCapSentences"
                 android:id="@+id/graph_backBtn" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_marginRight="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/scenarioText"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
